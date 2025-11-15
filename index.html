@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BurnCoin Official Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg-dark: #050810;
+      --bg-dark-alt: #090e1b;
+      --bg-light: #f5f7ff;
+      --bg-light-alt: #ffffff;
+      --text-dark: #e9f0ff;
+      --text-muted-dark: #9aa3c1;
+      --text-light: #111827;
+      --text-muted-light: #4b5563;
+      --accent-green: #1eff9c;
+      --accent-blue: #31a8ff;
+      --accent-orange: #ff7a3c;
+      --border-soft-dark: rgba(255, 255, 255, 0.07);
+      --border-soft-light: rgba(15, 23, 42, 0.08);
+      --card-radius: 18px;
+      --shadow-soft-dark: 0 20px 40px rgba(0, 0, 0, 0.45);
+      --shadow-soft-light: 0 20px 40px rgba(15, 23, 42, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top, #151a30 0, #050810 45%, #020308 100%);
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: center;
+      background: linear-gradient(135deg, #1eff9c, #31a8ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p {
+      text-align: center;
+      color: #9aa3c1;
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
+
+    .card {
+      background: rgba(8, 12, 32, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(10px);
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      font-size: 22px;
+      color: #57ffb9;
+    }
+
+    ul {
+      padding-left: 18px;
+      margin-top: 10px;
+    }
+
+    ul li {
+      margin-bottom: 6px;
+      color: #ccd6f6;
+    }
+
+    button {
+      background: linear-gradient(135deg, #57ffb9, #1eff9c);
+      border: none;
+      padding: 12px 20px;
+      color: #022c22;
+      font-weight: 600;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: 0.2s;
+      display: block;
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    button:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      color: #9aa3c1;
+      font-size: 13px;
+    }
+
+  </style>
+</head>
+
+<body>
+<div class="container">
+
+  <h1>BurnCoin Official Website</h1>
+  <p>Deflationary BEP-20 token powered by community, rewards, and automated burning.</p>
+
+  <div class="card">
+    <h2>🔥 What is BurnCoin?</h2>
+    <p>BurnCoin is a hyper-deflationary token on Binance Smart Chain (BSC) designed to reward holders while reducing supply over time.</p>
+    <ul>
+      <li>1% burn on every transaction</li>
+      <li>Liquidity locked for 5 years</li>
+      <li>Community airdrops & referral system</li>
+      <li>Fast & cheap BSC network</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>📊 Tokenomics</h2>
+    <ul>
+      <li>💧 80% Liquidity (Locked 5 years)</li>
+      <li>🎁 10% Airdrop & Referrals</li>
+      <li>🔒 10% Team Wallet (Locked)</li>
+      <li>🔥 Auto-burn until supply reaches 100,000</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🛒 How to Buy BurnCoin</h2>
+    <ul>
+      <li>Install MetaMask or Trust Wallet</li>
+      <li>Add BNB Smart Chain network</li>
+      <li>Visit PancakeSwap (coming soon)</li>
+      <li>Paste BurnCoin contract address</li>
+      <li>Swap BNB → BurnCoin</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🎁 Airdrop Registration</h2>
+    <p>Enter your email (future wallet connection, referral & claim system will be added).</p>
+
+    <input id="email" type="email" placeholder="Enter your email" style="
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      margin-bottom: 10px;
+    ">
+
+    <button onclick="signup()">Sign Up</button>
+
+    <p id="status" style="margin-top:10px; color:#57ffb9;"></p>
+  </div>
+
+  <footer>
+    © <span id="year"></span> BurnCoin Project — All Rights Reserved.
+  </footer>
+
+</div>
+
+<script>
+  document.getElementById("year").innerText = new Date().getFullYear();
+
+  function signup() {
+    let email = document.getElementById("email").value;
+    let status = document.getElementById("status");
+
+    if (!email) {
+      status.innerText = "Please enter a valid email!";
+      return;
+    }
+
+    status.innerText = "You are registered for BurnCoin Airdrop!";
+    document.getElementById("email").value = "";
+  }
+</script>
+
+</body>
+</html>
