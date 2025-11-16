@@ -2,26 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>BurnCoin Official Website</title>
+  <title>BurnCoin – Official Website</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
-      --bg-dark: #050810;
-      --bg-dark-alt: #090e1b;
-      --bg-light: #f5f7ff;
-      --bg-light-alt: #ffffff;
-      --text-dark: #e9f0ff;
-      --text-muted-dark: #9aa3c1;
-      --text-light: #111827;
+      --bg-dark: #030712;
+      --bg-dark-soft: #050b1d;
+      --bg-light: #f4f5fb;
+      --bg-light-soft: #ffffff;
+      --text-dark: #e5edff;
+      --text-muted-dark: #9ca3c9;
+      --text-light: #0f172a;
       --text-muted-light: #4b5563;
-      --accent-green: #1eff9c;
-      --accent-blue: #31a8ff;
-      --accent-orange: #ff7a3c;
-      --border-soft-dark: rgba(255, 255, 255, 0.07);
-      --border-soft-light: rgba(15, 23, 42, 0.08);
-      --card-radius: 18px;
-      --shadow-soft-dark: 0 20px 40px rgba(0, 0, 0, 0.45);
-      --shadow-soft-light: 0 20px 40px rgba(15, 23, 42, 0.15);
+      --accent-green: #22c55e;
+      --accent-green-soft: #bbf7d0;
+      --accent-blue: #3b82f6;
+      --accent-blue-soft: #bfdbfe;
+      --card-radius: 20px;
+      --shadow-dark: 0 24px 60px rgba(15, 23, 42, 0.75);
+      --shadow-light: 0 18px 45px rgba(148, 163, 184, 0.45);
     }
 
     * {
@@ -31,169 +30,647 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: radial-gradient(circle at top, #151a30 0, #050810 45%, #020308 100%);
-      color: var(--text-dark);
+      font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      padding: 20px;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 18px 12px 32px;
+      background:
+        radial-gradient(circle at top, #1f2937 0, #020617 45%, #020617 100%);
+      color: var(--text-dark);
     }
 
-    .container {
-      max-width: 900px;
-      margin: auto;
+    body.light {
+      background:
+        radial-gradient(circle at top, #e5f0ff 0, #f3f4ff 45%, #e5e7eb 100%);
+      color: var(--text-light);
     }
 
-    h1 {
-      font-size: 36px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      text-align: center;
-      background: linear-gradient(135deg, #1eff9c, #31a8ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .page {
+      width: 100%;
+      max-width: 960px;
     }
 
-    p {
-      text-align: center;
-      color: #9aa3c1;
-      margin-bottom: 20px;
-      font-size: 15px;
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 999px;
+      padding: 8px 14px;
+      margin-bottom: 18px;
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(148,163,184,0.5);
+      box-shadow: var(--shadow-dark);
+      backdrop-filter: blur(14px);
+    }
+    body.light .header {
+      background: rgba(255,255,255,0.94);
+      border-color: rgba(148,163,184,0.45);
+      box-shadow: var(--shadow-light);
+    }
+
+    .header-left,
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toggle-theme {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: radial-gradient(circle at top,#111827,transparent 60%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    body.light .toggle-theme {
+      background: radial-gradient(circle at top,#f9fafb,transparent 60%);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      background: conic-gradient(from 200deg,#f97316,#fb7185,#22c55e,#3b82f6,#f97316);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 0 22px rgba(248,113,113,0.8);
+      font-size: 18px;
+    }
+    .brand-text {
+      font-weight: 700;
+      letter-spacing: .03em;
+    }
+    .badge {
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.8);
+    }
+    body.light .badge {
+      background: rgba(243,244,246,0.95);
+    }
+
+    select.language {
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      padding: 6px 10px;
+      font-size: 12px;
+      background: rgba(15,23,42,0.9);
+      color: inherit;
+      outline: none;
+    }
+    body.light select.language {
+      background: rgba(248,250,252,0.98);
+    }
+
+    .header-right .social-link {
+      font-size: 12px;
+      color: inherit;
+      text-decoration: none;
+      opacity: 0.8;
+    }
+    .header-right .social-link:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    /* Layout */
+    .layout {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: minmax(0,3fr) minmax(0,2.2fr);
+    }
+    @media (max-width: 860px) {
+      .layout {
+        grid-template-columns: minmax(0,1fr);
+      }
     }
 
     .card {
-      background: rgba(8, 12, 32, 0.8);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 20px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(10px);
+      border-radius: var(--card-radius);
+      padding: 18px 18px 20px;
+      background: radial-gradient(circle at top left,rgba(56,189,248,0.16),transparent 60%),
+                  radial-gradient(circle at bottom right,rgba(34,197,94,0.20),transparent 60%),
+                  var(--bg-dark-soft);
+      border: 1px solid rgba(148,163,184,0.6);
+      box-shadow: var(--shadow-dark);
+    }
+    body.light .card {
+      background: radial-gradient(circle at top left,rgba(191,219,254,0.9),transparent 60%),
+                  var(--bg-light-soft);
+      box-shadow: var(--shadow-light);
+      border-color: rgba(148,163,184,0.5);
     }
 
-    h2 {
-      margin-bottom: 10px;
-      font-size: 22px;
-      color: #57ffb9;
-    }
-
-    ul {
-      padding-left: 18px;
-      margin-top: 10px;
-    }
-
-    ul li {
-      margin-bottom: 6px;
-      color: #ccd6f6;
-    }
-
-    button {
-      background: linear-gradient(135deg, #57ffb9, #1eff9c);
-      border: none;
-      padding: 12px 20px;
-      color: #022c22;
-      font-weight: 600;
+    .eyebrow {
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
       border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      background: rgba(15,23,42,0.9);
+      margin-bottom: 10px;
+    }
+    body.light .eyebrow {
+      background: rgba(248,250,252,0.98);
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: radial-gradient(circle,#22c55e,#16a34a);
+      box-shadow:0 0 0 4px rgba(34,197,94,0.3);
+    }
+
+    .hero-title {
+      font-size: clamp(26px,4vw,32px);
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .hero-highlight {
+      background: linear-gradient(135deg,#22c55e,#3b82f6);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .hero-sub {
+      font-size: 14px;
+      color: var(--text-muted-dark);
+      max-width: 460px;
+      margin-bottom: 16px;
+    }
+    body.light .hero-sub {
+      color: var(--text-muted-light);
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
       cursor: pointer;
-      transition: 0.2s;
-      display: block;
-      width: 100%;
-      margin-top: 15px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      justify-content: center;
+      white-space: nowrap;
+      transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg,#22c55e,#4ade80);
+      color: #022c22;
+      box-shadow: 0 16px 32px rgba(34,197,94,0.5);
+    }
+    .btn-secondary {
+      background: linear-gradient(135deg,#3b82f6,#60a5fa);
+      color: #021b33;
+      box-shadow: 0 16px 32px rgba(59,130,246,0.5);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(148,163,184,0.8);
+      color: inherit;
+      padding-inline: 14px;
+    }
+    .btn:hover {
+      transform: translateY(-1px);
+      opacity: .95;
     }
 
-    button:hover {
-      opacity: 0.9;
-      transform: translateY(-2px);
+    .hero-foot {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 11px;
+      margin-top: 6px;
+    }
+    .pill {
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(148,163,184,0.7);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    body.light .pill {
+      background: rgba(248,250,252,0.98);
     }
 
-    footer {
-      margin-top: 40px;
-      text-align: center;
-      color: #9aa3c1;
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .section-sub {
+      font-size: 13px;
+      color: var(--text-muted-dark);
+      margin-bottom: 12px;
+    }
+    body.light .section-sub {
+      color: var(--text-muted-light);
+    }
+
+    .list {
+      list-style: none;
       font-size: 13px;
     }
+    .list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .bullet {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      margin-top: 5px;
+      background: linear-gradient(135deg,#22c55e,#3b82f6);
+      flex-shrink:0;
+    }
 
+    .lock-grid {
+      display:grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    @media(max-width:640px){
+      .lock-grid{grid-template-columns:minmax(0,1fr);}
+    }
+    .lock-card{
+      border-radius: 14px;
+      padding: 10px 11px;
+      border:1px solid rgba(148,163,184,0.7);
+      background: rgba(15,23,42,0.9);
+      font-size:12px;
+    }
+    body.light .lock-card{
+      background:#ffffff;
+    }
+    .lock-label{
+      font-size:11px;
+      color:var(--text-muted-dark);
+      margin-bottom:3px;
+    }
+    body.light .lock-label{color:var(--text-muted-light);}
+    .lock-value{
+      font-weight:600;
+      margin-bottom:4px;
+    }
+    .lock-link{
+      font-size:11px;
+      color:#93c5fd;
+      text-decoration:none;
+    }
+    .lock-link:hover{text-decoration:underline;}
+
+    .social-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      font-size:12px;
+      margin-top:6px;
+    }
+    .social-chip{
+      border-radius:999px;
+      padding:5px 9px;
+      border:1px solid rgba(148,163,184,0.75);
+      background:rgba(15,23,42,0.9);
+    }
+    body.light .social-chip{
+      background:#f9fafb;
+    }
+    .social-chip a{
+      color:inherit;
+      text-decoration:none;
+    }
+    .social-chip a:hover{text-decoration:underline;}
+
+    footer{
+      margin-top:18px;
+      font-size:11px;
+      text-align:center;
+      color:var(--text-muted-dark);
+    }
+    body.light footer{color:var(--text-muted-light);}
   </style>
 </head>
-
 <body>
-<div class="container">
+<div class="page">
 
-  <h1>BurnCoin Official Website</h1>
-  <p>Deflationary BEP-20 token powered by community, rewards, and automated burning.</p>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <button class="toggle-theme" id="themeToggle" type="button">🌙</button>
+      <div class="brand">
+        <div class="brand-icon">🔥</div>
+        <div>
+          <div class="brand-text" data-i18n="brand">BurnCoin</div>
+          <div class="badge" data-i18n="badge">BEP-20 • BNB Smart Chain</div>
+        </div>
+      </div>
+    </div>
 
-  <div class="card">
-    <h2>🔥 What is BurnCoin?</h2>
-    <p>BurnCoin is a hyper-deflationary token on Binance Smart Chain (BSC) designed to reward holders while reducing supply over time.</p>
-    <ul>
-      <li>1% burn on every transaction</li>
-      <li>Liquidity locked for 5 years</li>
-      <li>Community airdrops & referral system</li>
-      <li>Fast & cheap BSC network</li>
+    <div class="header-right">
+      <a href="https://tiktok.com" target="_blank" class="social-link">TikTok</a>
+      <a href="https://facebook.com" target="_blank" class="social-link">Facebook</a>
+      <a href="mailto:supportburncoin@gmail.com" class="social-link">Email</a>
+      <select class="language" id="languageSelect">
+        <option value="en">EN</option>
+        <option value="np">नेपाली</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+
+    <!-- LEFT: HERO -->
+    <section class="card">
+      <div class="eyebrow">
+        <span class="dot"></span>
+        <span data-i18n="eyebrow">Welcome to the BurnCoin Official Website</span>
+      </div>
+
+      <h1 class="hero-title">
+        <span data-i18n="heroLine1">Deflationary</span>
+        <span class="hero-highlight" data-i18n="heroLine2">community token</span>
+        <span data-i18n="heroLine3">on BNB Smart Chain.</span>
+      </h1>
+
+      <p class="hero-sub" data-i18n="heroSub">
+        BurnCoin is built for long-term holders: auto-burn on every transaction,
+        locked liquidity, and a fair airdrop system for real community members.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="signup.html" class="btn btn-primary">
+          🟩 <span data-i18n="btnSignup">Sign Up for Airdrop</span>
+        </a>
+        <a href="#buy" class="btn btn-secondary">
+          🔵 <span data-i18n="btnBuy">Buy BurnCoin Now</span>
+        </a>
+        <a href="#locks" class="btn btn-outline">
+          🔒 <span data-i18n="btnLocks">View Locks & Proof</span>
+        </a>
+      </div>
+
+      <div class="hero-foot">
+        <div class="pill">
+          🔥 <span data-i18n="pillBurn">1% burn per transaction until target supply</span>
+        </div>
+        <div class="pill">
+          💧 <span data-i18n="pillLiquidity">Liquidity locked 5+ years (proof below)</span>
+        </div>
+        <div class="pill">
+          🎁 <span data-i18n="pillAirdrop">Referral-based airdrop for early users</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT: TOKENOMICS / LOCKS -->
+    <aside class="card" id="locks">
+      <h2 class="section-title" data-i18n="tokenomicsTitle">Tokenomics & Locks</h2>
+      <p class="section-sub" data-i18n="tokenomicsSub">
+        Simple and transparent allocation. Replace the links below with your real
+        BscScan / lock URLs when they are ready.
+      </p>
+
+      <ul class="list">
+        <li>
+          <span class="bullet"></span>
+          <span data-i18n="tok1">80% – Liquidity pool (locked for 5 years).</span>
+        </li>
+        <li>
+          <span class="bullet"></span>
+          <span data-i18n="tok2">10% – Airdrop & community rewards.</span>
+        </li>
+        <li>
+          <span class="bullet"></span>
+          <span data-i18n="tok3">10% – Team / owner wallet, time-locked.</span>
+        </li>
+        <li>
+          <span class="bullet"></span>
+          <span data-i18n="tok4">1% burn on each transfer until supply reaches the final floor.</span>
+        </li>
+      </ul>
+
+      <div class="lock-grid" style="margin-top:10px;">
+        <div class="lock-card">
+          <div class="lock-label" data-i18n="lockLpLabel">Liquidity Lock</div>
+          <div class="lock-value" data-i18n="lockLpVal">Locked • 5 years</div>
+          <a href="#" class="lock-link" data-i18n="lockViewSoon">Add TeamFinance / Unicrypt link here</a>
+        </div>
+        <div class="lock-card">
+          <div class="lock-label" data-i18n="lockOwnerLabel">Owner Wallet Lock</div>
+          <div class="lock-value" data-i18n="lockOwnerVal">Locked allocation</div>
+          <a href="#" class="lock-link" data-i18n="lockOwnerSoon">Add BscScan vesting link</a>
+        </div>
+        <div class="lock-card">
+          <div class="lock-label" data-i18n="lockAirdropLabel">Airdrop Wallet</div>
+          <div class="lock-value" data-i18n="lockAirdropVal">Reserved for community</div>
+          <a href="#" class="lock-link" data-i18n="lockAirdropSoon">Add proof wallet link</a>
+        </div>
+        <div class="lock-card">
+          <div class="lock-label" data-i18n="lockContractLabel">Contract & Audit</div>
+          <div class="lock-value" data-i18n="lockContractVal">Contract on BscScan</div>
+          <a href="#" class="lock-link" data-i18n="lockContractSoon">Add contract / audit link</a>
+        </div>
+      </div>
+
+      <div class="section-sub" style="margin-top:6px;" data-i18n="socialText">
+        Official social channels (replace links with your real ones):
+      </div>
+      <div class="social-row">
+        <div class="social-chip">
+          🎵 TikTok:
+          <a href="https://tiktok.com" target="_blank">@burncoin</a>
+        </div>
+        <div class="social-chip">
+          📘 Facebook:
+          <a href="https://facebook.com" target="_blank">BurnCoin Official</a>
+        </div>
+        <div class="social-chip">
+          ✉️ Email:
+          <a href="mailto:supportburncoin@gmail.com">supportburncoin@gmail.com</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- HOW TO BUY -->
+  <section class="card" id="buy" style="margin-top:18px;">
+    <h2 class="section-title" data-i18n="buyTitle">How to Buy BurnCoin</h2>
+    <p class="section-sub" data-i18n="buySub">
+      When your contract is live, update this section with the real address and
+      PancakeSwap link.
+    </p>
+    <ul class="list">
+      <li><span class="bullet"></span><span data-i18n="buy1">Install MetaMask or Trust Wallet and switch to BNB Smart Chain.</span></li>
+      <li><span class="bullet"></span><span data-i18n="buy2">Fund your wallet with a small amount of BNB for gas & swapping.</span></li>
+      <li><span class="bullet"></span><span data-i18n="buy3">Open PancakeSwap and paste the official BurnCoin contract address.</span></li>
+      <li><span class="bullet"></span><span data-i18n="buy4">Confirm import, then swap BNB → BurnCoin.</span></li>
+      <li><span class="bullet"></span><span data-i18n="buy5">Hold, invite friends, and track burns + locks from this website.</span></li>
     </ul>
-  </div>
-
-  <div class="card">
-    <h2>📊 Tokenomics</h2>
-    <ul>
-      <li>💧 80% Liquidity (Locked 5 years)</li>
-      <li>🎁 10% Airdrop & Referrals</li>
-      <li>🔒 10% Team Wallet (Locked)</li>
-      <li>🔥 Auto-burn until supply reaches 100,000</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>🛒 How to Buy BurnCoin</h2>
-    <ul>
-      <li>Install MetaMask or Trust Wallet</li>
-      <li>Add BNB Smart Chain network</li>
-      <li>Visit PancakeSwap (coming soon)</li>
-      <li>Paste BurnCoin contract address</li>
-      <li>Swap BNB → BurnCoin</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>🎁 Airdrop Registration</h2>
-    <p>Enter your email (future wallet connection, referral & claim system will be added).</p>
-
-    <input id="email" type="email" placeholder="Enter your email" style="
-      width: 100%;
-      padding: 12px;
-      border-radius: 10px;
-      border: none;
-      margin-bottom: 10px;
-    ">
-
-    <button onclick="signup()">Sign Up</button>
-
-    <p id="status" style="margin-top:10px; color:#57ffb9;"></p>
-  </div>
+  </section>
 
   <footer>
-    © <span id="year"></span> BurnCoin Project — All Rights Reserved.
+    © <span id="year"></span> BurnCoin Project • <span data-i18n="footerText">Community-driven. No financial advice.</span>
   </footer>
-
 </div>
 
 <script>
-  document.getElementById("year").innerText = new Date().getFullYear();
+  // YEAR
+  document.getElementById("year").textContent = new Date().getFullYear();
 
-  function signup() {
-    let email = document.getElementById("email").value;
-    let status = document.getElementById("status");
-
-    if (!email) {
-      status.innerText = "Please enter a valid email!";
-      return;
-    }
-
-    status.innerText = "You are registered for BurnCoin Airdrop!";
-    document.getElementById("email").value = "";
+  // THEME TOGGLE
+  const body = document.body;
+  const themeToggle = document.getElementById("themeToggle");
+  const savedTheme = localStorage.getItem("burnTheme");
+  if (savedTheme === "light") {
+    body.classList.add("light");
+    themeToggle.textContent = "☀️";
   }
-</script>
+  themeToggle.addEventListener("click", () => {
+    body.classList.toggle("light");
+    const light = body.classList.contains("light");
+    themeToggle.textContent = light ? "☀️" : "🌙";
+    localStorage.setItem("burnTheme", light ? "light" : "dark");
+  });
 
+  // LANGUAGE
+  const languageSelect = document.getElementById("languageSelect");
+  const savedLang = localStorage.getItem("burnLang") || "en";
+  languageSelect.value = savedLang;
+
+  const strings = {
+    en: {
+      brand: "BurnCoin",
+      badge: "BEP-20 • BNB Smart Chain",
+      eyebrow: "Welcome to the BurnCoin Official Website",
+      heroLine1: "Deflationary",
+      heroLine2: "community token",
+      heroLine3: "on BNB Smart Chain.",
+      heroSub: "BurnCoin is built for long-term holders: auto-burn on every transaction, locked liquidity, and a fair airdrop system for real community members.",
+      btnSignup: "Sign Up for Airdrop",
+      btnBuy: "Buy BurnCoin Now",
+      btnLocks: "View Locks & Proof",
+      pillBurn: "1% burn per transaction until target supply",
+      pillLiquidity: "Liquidity locked 5+ years (proof below)",
+      pillAirdrop: "Referral-based airdrop for early users",
+      tokenomicsTitle: "Tokenomics & Locks",
+      tokenomicsSub: "Simple and transparent allocation. Replace the links below with your real BscScan / lock URLs when they are ready.",
+      tok1: "80% – Liquidity pool (locked for 5 years).",
+      tok2: "10% – Airdrop & community rewards.",
+      tok3: "10% – Team / owner wallet, time-locked.",
+      tok4: "1% burn on each transfer until supply reaches the final floor.",
+      lockLpLabel: "Liquidity Lock",
+      lockLpVal: "Locked • 5 years",
+      lockViewSoon: "Add TeamFinance / Unicrypt link here",
+      lockOwnerLabel: "Owner Wallet Lock",
+      lockOwnerVal: "Locked allocation",
+      lockOwnerSoon: "Add BscScan vesting link",
+      lockAirdropLabel: "Airdrop Wallet",
+      lockAirdropVal: "Reserved for community",
+      lockAirdropSoon: "Add proof wallet link",
+      lockContractLabel: "Contract & Audit",
+      lockContractVal: "Contract on BscScan",
+      lockContractSoon: "Add contract / audit link",
+      socialText: "Official social channels (replace links with your real ones):",
+      buyTitle: "How to Buy BurnCoin",
+      buySub: "When your contract is live, update this section with the real address and PancakeSwap link.",
+      buy1: "Install MetaMask or Trust Wallet and switch to BNB Smart Chain.",
+      buy2: "Fund your wallet with a small amount of BNB for gas & swapping.",
+      buy3: "Open PancakeSwap and paste the official BurnCoin contract address.",
+      buy4: "Confirm import, then swap BNB → BurnCoin.",
+      buy5: "Hold, invite friends, and track burns + locks from this website.",
+      footerText: "Community-driven. No financial advice."
+    },
+    np: {
+      brand: "BurnCoin",
+      badge: "BEP-20 • BNB स्मार्ट चेइन",
+      eyebrow: "BurnCoin को अफिसियल वेबसाइटमा स्वागत छ",
+      heroLine1: "डिफ्लेसनरी",
+      heroLine2: "कम्युनिटी टोकन",
+      heroLine3: "BNB स्मार्ट चेइनमा।",
+      heroSub: "BurnCoin दीर्घकालीन होल्डरका लागि बनाइएको हो: हरेक ट्रान्जेक्सनमा अटो-बर्न, लक गरिएको ल्यिक्विडिटी र वास्तविक कम्युनिटीका लागि फेयर एयर्ड्रप सिस्टम।",
+      btnSignup: "एयर्ड्रपका लागि साइनअप",
+      btnBuy: "अहिले नै BurnCoin किन्नुहोस्",
+      btnLocks: "लक र प्रुफ हेर्नुहोस्",
+      pillBurn: "टार्गेट सप्लाइ पुगुन्जेल प्रति ट्रान्जेक्सन १% बर्न",
+      pillLiquidity: "ल्यिक्विडिटी ५+ वर्षका लागि लक (तल प्रुफ)",
+      pillAirdrop: "अर्ली युजरका लागि रेफरल एयर्ड्रप",
+      tokenomicsTitle: "टोकनोमिक्स र लक",
+      tokenomicsSub: "सरल र ट्रान्सपेरोन्ट आवंटन। पछि वास्तविक BscScan / लकको लिंक यहाँ अप्डेट गर्नुस्।",
+      tok1: "८०% – ल्यिक्विडिटी पूल (५ वर्षका लागि लक)।",
+      tok2: "१०% – एयर्ड्रप र कम्युनिटी रिवार्ड।",
+      tok3: "१०% – टिम / ओनर वालेट, समय अनुसार लक।",
+      tok4: "फाइनल सप्लाइ फ्लोर पुगुन्जेल हरेक ट्रान्जेक्सनमा १% बर्न।",
+      lockLpLabel: "ल्यिक्विडिटी लक",
+      lockLpVal: "५ वर्षका लागि लक",
+      lockViewSoon: "यहाँ TeamFinance / Unicrypt को लिंक राख्नुस्",
+      lockOwnerLabel: "ओनर वालेट लक",
+      lockOwnerVal: "लक गरिएको अलोकेसन",
+      lockOwnerSoon: "यहाँ BscScan भेस्टिङ लिंक राख्नुस्",
+      lockAirdropLabel: "एयर्ड्रप वालेट",
+      lockAirdropVal: "कम्युनिटीका लागि रिजर्भ",
+      lockAirdropSoon: "यहाँ प्रुफ वालेट लिंक राख्नुस्",
+      lockContractLabel: "कन्ट्र्याक्ट र अडिट",
+      lockContractVal: "BscScan मा कन्ट्र्याक्ट",
+      lockContractSoon: "यहाँ कन्ट्र्याक्ट / अडिट लिंक राख्नुस्",
+      socialText: "अफिसियल सोसल च्यानलहरू (पछि वास्तविक लिंक राख्नुस्):",
+      buyTitle: "BurnCoin कसरी किन्नुहुन्छ?",
+      buySub: "कन्ट्र्याक्ट लाइभ भएपछि यहाँ वास्तविक एड्रेस र PancakeSwap लिंक राख्नुस्।",
+      buy1: "MetaMask वा Trust Wallet इन्स्टल गरेर BNB स्मार्ट चेइन चयन गर्नुस्।",
+      buy2: "वालेटमा थोरै BNB (ग्यास र स्वापका लागि) पठाउनुस्।",
+      buy3: "PancakeSwap खोल्नुस् र अफिसियल BurnCoin कन्ट्र्याक्ट एड्रेस पेस्ट गर्नुस्।",
+      buy4: "इम्पोर्ट कन्फर्म गरेर BNB → BurnCoin स्वाप गर्नुस्।",
+      buy5: "होल्ड गर्नुस्, साथीहरूलाई बोलाउनुस् र यहाँबाट बर्न/लक ट्र्याक गर्नुस्।",
+      footerText: "कम्युनिटी-ड्राइभन प्रोजेक्ट। वित्तीय सल्लाह होइन।"
+    }
+  };
+
+  function applyLang(lang) {
+    const dict = strings[lang];
+    if (!dict) return;
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (dict[key]) el.textContent = dict[key];
+    });
+    localStorage.setItem("burnLang", lang);
+  }
+
+  applyLang(savedLang);
+  languageSelect.addEventListener("change", e => {
+    applyLang(e.target.value);
+  });
+</script>
 </body>
 </html>
